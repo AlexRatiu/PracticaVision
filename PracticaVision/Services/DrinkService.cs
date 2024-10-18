@@ -35,4 +35,20 @@ public class DrinkService
     {
         return context.Find(drink => drink.Id == id);
     }
+
+    public void AddDrink(Drink newDrink)
+    {
+        if(!context.Exists(drink => drink.Id == newDrink.Id))
+        {
+            context.Add(newDrink);
+        }
+    }
+
+    public void DeleteDrink(int id)
+    {
+        if(GetById(id) != null)
+        {
+            context.Remove(GetById(id));
+        }
+    }
 }
