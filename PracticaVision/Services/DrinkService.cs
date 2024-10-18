@@ -51,4 +51,37 @@ public class DrinkService
             context.Remove(GetById(id));
         }
     }
+
+    //In cazul in care numele trebuie sa se potriveasca perfect si este unic
+      
+    /* public Drink FindByName(string name)
+    {
+        return context.Find(drink => drink.Name ==  name);
+    }*/
+
+    //In cazul in care numele trebuie doar sa contina secventa si nu este unic
+    public List<Drink> FindByName(string name)
+    {
+        return context.Where(drink => drink.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+    }
+
+    public void Update(Drink updateDrink)
+    {
+        var drinkToUpdate = context.Find(drink => drink.Id == updateDrink.Id);
+
+        if(drinkToUpdate != null)
+        {
+            drinkToUpdate.Name = updateDrink.Name;
+            drinkToUpdate.Price = updateDrink.Price;
+            drinkToUpdate.AlcoholPercentage = updateDrink.AlcoholPercentage;
+            drinkToUpdate.Category = updateDrink.Category;
+        }
+    }
+
+    public Drink Random()
+    {
+        var random = new Random();
+        int randomId = random.Next(context.Count);
+        return context.Find(drink => drink.Id == randomId);
+    }
 }
