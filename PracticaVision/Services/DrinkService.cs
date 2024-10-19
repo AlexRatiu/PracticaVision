@@ -97,4 +97,11 @@ public class DrinkService
     {
         return _context.Drinks.Where(drink => drink.Id % 2 == 1).ToList();
     }
+
+    public List <Drink> GetPage(int pageNumber, int pageSize)
+    {
+        int skip = (pageNumber - 1) * pageSize;
+        
+        return _context.Drinks.Skip(skip).Take(pageSize).ToList();
+    }
 }
