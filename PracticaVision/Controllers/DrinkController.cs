@@ -35,6 +35,13 @@ namespace PracticaVision.Controllers
         }
 
         [HttpGet("[action]")]
+        public IActionResult GetOddDrinks()
+        {
+            var drinks = _drinkService.GetOdd();
+            return Ok(drinks);
+        }
+
+        [HttpGet("[action]")]
         public IActionResult GetDrinkById(int id)
         {
             var drink = _drinkService.GetById(id);

@@ -90,6 +90,11 @@ public class DrinkService
 
     public Drink Random()
     {
-        return _context.Drinks.OrderBy(d => Guid.NewGuid()).FirstOrDefault();
+        return _context.Drinks.ToList().OrderBy(d => Guid.NewGuid()).FirstOrDefault();
+    }
+
+    public List<Drink> GetOdd()
+    {
+        return _context.Drinks.Where(drink => drink.Id % 2 == 1).ToList();
     }
 }
