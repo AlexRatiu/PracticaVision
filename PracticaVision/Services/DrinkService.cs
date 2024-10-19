@@ -1,5 +1,6 @@
 ﻿using PracticaVision.Models;
-using PracticaVision.Models.Enums;
+using PracticaVision.DataContext;
+using Microsoft.EntityFrameworkCore;
 public class DrinkService
 {
     /*private Dictionary<int, string> context = new Dictionary<int, string> {
@@ -12,7 +13,7 @@ public class DrinkService
             { 7, "Wine" }
         };*/
 
-    private List<Drink> context = new List<Drink>
+    /*private List<Drink> context = new List<Drink>
     {
         new Drink{Id = 1, Name = "Water", AlcoholPercentage = 0, Price = 4.5f, Category = DrinkCategories.Water},
         new Drink{Id = 2, Name = "Coffee", AlcoholPercentage = 0, Price = 8, Category = DrinkCategories.Cofee},
@@ -22,52 +23,60 @@ public class DrinkService
         new Drink{Id = 6, Name = "Beer", AlcoholPercentage = 5, Price = 9, Category = DrinkCategories.Beer},
         new Drink{Id = 7, Name = "Wine", AlcoholPercentage= 13, Price = 25, Category = DrinkCategories.Wine}
 
-    };
+    };*/
 
-    public DrinkService() { }
+    private readonly DrinksDbContext _context;
+
+    public DrinkService(DrinksDbContext context)
+    {
+        _context = context;
+    }
 
     public List<Drink> GetAll()
     {
-        return context;
+        return _context.Drinks.ToList();
     }
 
     public Drink GetById(int id)
     {
-        return context.Find(drink => drink.Id == id);
+        return _context.Drinks.Find(id);
     }
 
     public void AddDrink(Drink newDrink)
     {
-        if(!context.Exists(drink => drink.Id == newDrink.Id))
+        if(!_context.Drinks.Any(drink => drink.Id == newDrink.Id))
         {
-            context.Add(newDrink);
+            _context.Drinks.Add(newDrink);
+            _context.SaveChanges();
         }
     }
 
     public void DeleteDrink(int id)
     {
-        if(GetById(id) != null)
+        var drink = _context.Drinks.Find(id);
+        if(drink != null)
         {
-            context.Remove(GetById(id));
+            _context.Drinks.Remove(drink);
+            _context.SaveChanges();
         }
     }
 
     //In cazul in care numele trebuie sa se potriveasca perfect si este unic
-      
-    /* public Drink FindByName(string name)
+
+    /*public Drink FindByName(string name)
     {
-        return context.Find(drink => drink.Name ==  name);
+        return _context.Drinks.FirstOrDefault(drink => drink.Name == name);
     }*/
 
     //In cazul in care numele trebuie doar sa contina secventa si nu este unic
     public List<Drink> FindByName(string name)
     {
-        return context.Where(drink => drink.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        return _context.Drinks.Where(drink => EF.Functions.Like(drink.Name, $"%{name}")).ToList();
     }
 
     public void Update(Drink updateDrink)
     {
-        var drinkToUpdate = context.Find(drink => drink.Id == updateDrink.Id);
+        var drinkToUpdate = _context.Drinks.Find(updateDrink.Id);
 
         if(drinkToUpdate != null)
         {
@@ -75,13 +84,12 @@ public class DrinkService
             drinkToUpdate.Price = updateDrink.Price;
             drinkToUpdate.AlcoholPercentage = updateDrink.AlcoholPercentage;
             drinkToUpdate.Category = updateDrink.Category;
+            _context.SaveChanges();
         }
     }
 
     public Drink Random()
     {
-        var random = new Random();
-        int randomId = random.Next(context.Count);
-        return context.Find(drink => drink.Id == randomId);
+        return _context.Drinks.OrderBy(d => Guid.NewGuid()).FirstOrDefault();
     }
 }
