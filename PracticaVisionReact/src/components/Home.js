@@ -13,31 +13,44 @@ function Home() {
   };
 
   const headingStyle = {
+    textAlign: 'center',
     fontSize: '3rem',
-    color: '#333',
-    marginBottom: '20px',
+    marginBottom: '90px',
+    color: '#FFFFFF', 
+    textShadow: '0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 127, 0, 0.8), 0 0 30px rgba(255, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 0, 255, 0.8), 0 0 60px rgba(75, 0, 130, 0.8), 0 0 70px rgba(238, 130, 238, 0.8)'
+};
+
+
+
+  const buttonStyle = {
+    background: 'linear-gradient(to bottom right, #06402B, #90EE90)',
+    border: '0',
+    borderRadius: '12px',
+    color: '#FFFFFF',
+    cursor: 'pointer',
+    display: 'inline-block',
+    fontFamily: '-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+    fontSize: '16px',
+    fontWeight: '500',
+    lineHeight: '2.5',
+    outline: 'transparent',
+    padding: '0 1rem',
+    textAlign: 'center',
+    transition: 'box-shadow .2s ease-in-out',
+    touchAction: 'manipulation',
+    whiteSpace: 'nowrap',
+    boxShadow: 'none'
   };
 
-  const linkStyle = {
-    padding: '10px 20px',
-    fontSize: '1.2rem',
-    color: 'white',
-    backgroundColor: '#4CAF50',
-    border: 'none',
-    borderRadius: '5px',
-    textDecoration: 'none',
-    transition: 'background-color 0.3s ease',
-  };
-
-  const linkHoverStyle = {
-    backgroundColor: '#45a049',
-  };
+  const buttonHoverStyle = {
+    boxShadow: '0 0 .25rem rgba(0, 255, 0, 0.5), -.125rem -.125rem 1rem rgba(34, 139, 34, 0.5), .125rem .125rem 1rem rgba(0, 128, 0, 0.5)'
+};
 
   return React.createElement(
     'div',
     { style: containerStyle },
     React.createElement('h1', { style: headingStyle }, 'Welcome to the Drinks App'),
-    React.createElement(Link, { to: '/drinks', style: linkStyle, onMouseOver: (e) => e.target.style.backgroundColor = linkHoverStyle.backgroundColor, onMouseOut: (e) => e.target.style.backgroundColor = linkStyle.backgroundColor }, 'Go to Drinks List')
+    React.createElement('button', {style: buttonStyle, onMouseOver: (e) => e.target.style.boxShadow = buttonHoverStyle.boxShadow, onMouseOut: (e) => e.target.style.boxShadow = buttonStyle.boxShadow, onClick : () => window.location.href = '/drinks'}, 'Go to Drinks List')
   );
 }
 

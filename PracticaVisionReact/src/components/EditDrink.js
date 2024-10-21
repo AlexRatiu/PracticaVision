@@ -7,40 +7,65 @@ function EditDrink() {
         padding: '20px',
         maxWidth: '40vw',
         margin: '0 auto',
-        backgroundColor: '#f9f9f9',
-        borderRadius: '8px',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        background: 'linear-gradient(to bottom right, #f9f9f9, #d0e7ff)', 
+        borderRadius: '12px', 
+        boxShadow: '0 0 .25rem rgba(0, 0, 255, 0.5), -.125rem -.125rem 1rem rgba(30, 144, 255, 0.5), .125rem .125rem 1rem rgba(70, 130, 180, 0.5)',
+        border: '2px solid rgba(0, 0, 255, 0.2)', 
       };
-    
+      
       const formGroupStyle = {
         marginBottom: '15px',
       };
-    
+      
       const labelStyle = {
         display: 'block',
         marginBottom: '5px',
         fontWeight: 'bold',
-        color: '#333',
+        color: '#00008B', 
+        textShadow: '1px 1px 2px rgba(0, 128, 255, 0.5)', 
       };
-    
+
+      const headingStyle = {
+        textAlign: 'center',
+        fontSize: '2rem',
+        marginBottom: '20px',
+        color: '#333',
+        textShadow: '0 0 .25rem rgba(0, 0, 255, 0.5), -.125rem -.125rem 1rem rgba(30, 144, 255, 0.5), .125rem .125rem 1rem rgba(70, 130, 180, 0.5)'
+      }; 
+      
       const inputStyle = {
         width: '100%',
         padding: '8px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
+        borderRadius: '8px', 
+        border: '1px solid #90EE90', 
         boxSizing: 'border-box',
+        boxShadow: '0 0 .25rem rgba(0, 0, 255, 0.5), -.125rem -.125rem 1rem rgba(30, 144, 255, 0.5), .125rem .125rem 1rem rgba(70, 130, 180, 0.5)',
       };
     
       const buttonStyle = {
-        padding: '10px 15px',
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
+        background: 'linear-gradient(to bottom right, #00008B, #ADD8E6)',
+        border: '0',
+        borderRadius: '12px',
+        color: '#FFFFFF',
         cursor: 'pointer',
-        display: 'block',
-        margin: '20px auto',
+        display: 'inline-block',
+        fontFamily: '-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+        fontSize: '16px',
+        fontWeight: '500',
+        lineHeight: '2.5',
+        outline: 'transparent',
+        padding: '0 1rem',
+        textAlign: 'center',
+        transition: 'box-shadow .2s ease-in-out',
+        touchAction: 'manipulation',
+        whiteSpace: 'nowrap',
+        marginRight: '10px',
+        boxShadow: 'none'
       };
+
+      const buttonHoverStyle = {
+        boxShadow: '0 0 .25rem rgba(0, 0, 255, 0.5), -.125rem -.125rem 1rem rgba(30, 144, 255, 0.5), .125rem .125rem 1rem rgba(70, 130, 180, 0.5)'
+    };
     
       const errorStyle = {
         color: 'red',
@@ -114,7 +139,7 @@ function EditDrink() {
 
   return (
     <div style={containerStyle}>
-      <h2>Edit Drink</h2>
+      <h2 style={headingStyle}>Edit Drink</h2>
       <form onSubmit={handleSubmit}>
         <div style={formGroupStyle}>
           <label style={labelStyle}>Drink Name:</label>
@@ -147,17 +172,33 @@ function EditDrink() {
           />
         </div>
         <div style={formGroupStyle}>
-          <label style={labelStyle}>Category(0-Water, 1-Coffee, 2-Tea, 3-Juice, 4-Soda, 5-Beer, 6-Wine):</label>
-          <input
-            type="number"
-            name="category"
-            value={drink.category}
-            onChange={handleChange}
-            style={inputStyle}
-          />
+            <label style={labelStyle}>
+                Category:
+            </label>
+            <select
+                name="category"
+                value={drink.category}
+                onChange={handleChange}
+                style={inputStyle}
+            >
+                <option value="0">Water</option>
+                <option value="1">Coffee</option>
+                <option value="2">Tea</option>
+                <option value="3">Juice</option>
+                <option value="4">Soda</option>
+                <option value="5">Beer</option>
+                <option value="6">Wine</option>
+            </select>
         </div>
         {error && <div style={errorStyle}>{error}</div>}
-        <button type="submit" style={buttonStyle}>Update Drink</button>
+        <button
+        type='submit'
+        style={buttonStyle}
+        onMouseOver={(e) => (e.target.style.boxShadow = buttonHoverStyle.boxShadow)}
+        onMouseOut={(e) => (e.target.style.boxShadow = buttonStyle.boxShadow)}
+      >
+        Edit drink
+      </button>
       </form>
     </div>
   );
