@@ -32,6 +32,7 @@ function Drinks() {
           'li',
           { key: drink.id },
           drink.name,
+          React.createElement(Link, { to: `/drinks/${drink.id}` }, 'Edit'),  
           React.createElement('button', { onClick: () => handleDelete(drink.id) }, 'Delete')
         )
       )
