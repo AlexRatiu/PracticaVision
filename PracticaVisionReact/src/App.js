@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Drinks from './components/Drinks';
+import NewDrink from './components/NewDrink';
 
 function App() {
   return React.createElement(
@@ -11,7 +12,9 @@ function App() {
       Routes,
       null,
       React.createElement(Route, { path: '/', element: React.createElement(Home) }),
-      React.createElement(Route, { path: '/drinks', element: React.createElement(Drinks) })
+      React.createElement(Route, { path: '/drinks', element: React.createElement(Drinks) }),
+      React.createElement(Route, { path: '/drinks/new', element: React.createElement(NewDrink) })
+
     )
   );
 }

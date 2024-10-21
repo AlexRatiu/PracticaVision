@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Drinks() {
   const [drinks, setDrinks] = useState([]);
@@ -21,6 +22,7 @@ function Drinks() {
   return React.createElement(
     'div',
     null,
+    React.createElement(Link, { to: '/drinks/new' }, 'Add new drink'),
     React.createElement('h2', null, 'Drinks List'),
     React.createElement(
       'ul',
