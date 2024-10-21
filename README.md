@@ -1,9 +1,9 @@
 # PracticaVision
 
-![HomePage](https://github.com/user-attachments/assets/c840ae83-a366-4264-8b2e-c52b6c3bd633)
+![HomePage](https://github.com/user-attachments/assets/f5d910cc-f005-423b-829b-b4175b058fab)
 
-![DrinksPage](https://github.com/user-attachments/assets/dffb478c-ddf5-42a8-9ae3-896dea77eebf)
+![DrinksPage](https://github.com/user-attachments/assets/1af49355-d98d-4587-8bd8-3b3afe39f101)
 
-![NewDrinkPage](https://github.com/user-attachments/assets/da2acd20-0941-4887-943e-5c4aa4774abd)
+![AddDrinkPage](https://github.com/user-attachments/assets/b6bbc518-ae47-4b92-b099-d3c95e51ed28)
 
-![EditDrinkPage](https://github.com/user-attachments/assets/a7f585df-d5cc-41df-8a01-9aa8d968c2dc)
+![EditDrinkPage](https://github.com/user-attachments/assets/3afd5c20-9d42-4941-b8ce-5981bb118393)
